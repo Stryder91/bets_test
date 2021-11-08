@@ -10,15 +10,15 @@ const port = 8000
 // First step : get events
 app.get('/events', (req, res) => {
   HLTV.getEvents().then(resfromApi => {
-    console.log("Coucou", res)
+    console.log("Coucou")
     res.send(resfromApi)
   })
 });
 
 // Second step : get matches from event
 app.get('/matches', (req, res) => {
-  HLTV.getEvents().then(resfromApi => {
-    console.log("Coucou", res)
+  console.log("Coucou", req.query.id)
+  HLTV.getResults({ eventIds : [req.query.id]}).then(resfromApi => {
     res.send(resfromApi)
   })
 });
@@ -31,24 +31,12 @@ app.get('/', (req, res) => {
   // HLTV.getEvent({ id: 4866}).then(res => {
   //   console.log("Coucou", res)
   // })
-  HLTV.getResults({ eventIds: [4866] }).then(res => {
-    console.log("Coucou", res)
-  })
-  HLTV.getMatches().then((res) => {
-    console.log("Coucou", res)
-  })
-  axios.get('/')
-  .then(function (response) {
-    // handle success
-    console.log("Coucou");
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  })
-  .then(function () {
-    // always executed
-  });
+  // HLTV.getResults({ eventIds: [4866] }).then(res => {
+  //   console.log("Coucou")
+  // })
+  // HLTV.getMatches().then((res) => {
+  //   console.log("Coucou")
+  // })
 })
 
 app.listen(port, () => {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Card, Button } from 'antd';
+import { Tournament } from './Tournament';
 
 
 export const Hltv = () => {
@@ -38,12 +39,6 @@ export const Hltv = () => {
 	} 
 	return <div>Loading events ...</div>
 }
-
-const Tournament = ({eventState}) => {
-	return <h1>Welcome to Tournament n° {eventState.id}</h1>
-}
-
-
 
 const MyCard = ({event, setEvent}) => {
 	return (

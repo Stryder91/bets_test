@@ -11,6 +11,25 @@
   justify-content: center;
   color: white;
 }
+.d-flex {
+  display: flex;
+}
+.wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+.d-center {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+img {
+  width: 100%;
+  height: auto;
+}
+.m-auto {
+  margin: auto;
+}
 
 .App-link {
   color: #61dafb;
@@ -22,4 +41,11 @@
   padding: 10px;
   border-radius: 10px;
   margin: 10px;
+}
+.team-card {
+  display: flex;
+  width: 150px;
+}
+.team-card > img {
+  width: 60%;
 }
