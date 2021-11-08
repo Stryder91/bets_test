@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Card, Button } from 'antd';
 import { Tournament } from './Tournament';
+import { Link } from 'react-router-dom';
 
 
 export const Hltv = () => {
@@ -18,9 +19,6 @@ export const Hltv = () => {
 			// handle error
 			console.log(error);
 		})
-		.then(function () {
-			// always executed
-		});
 	}, [])
 
 	if (eventState && eventState.id > 0) {
@@ -33,7 +31,9 @@ export const Hltv = () => {
 		return (
 			<div>
 				<div>All events</div>
-				{events.map(e => <MyCard key={e.id} setEvent={setEvent} event={e}/>)}
+				<div className="d-center">
+					{events.map(e => <MyCard key={e.id} setEvent={setEvent} event={e}/>)}
+				</div>
 			</div>
 		)
 	} 
@@ -41,12 +41,15 @@ export const Hltv = () => {
 }
 
 const MyCard = ({event, setEvent}) => {
+	console.log("Event", event.id)
 	return (
-	<Card className="card" title={event.name} style={{ width: 300 }}>
+	<Card className="card card-event" title={event.name} style={{ width: 300 }}>
 		<p>Start : {event.dateStart}</p>
-        <p>End : {event.dateEnd}</p>
-        <p>Id : {event.id}</p>
-        <Button onClick={() => setEvent(event)}>Bet</Button>
+		<p>End : {event.dateEnd}</p>
+		<p>Id : {event.id}</p>
+		<Link to={`${event.id}`}>
+			<Button onClick={() => setEvent(event)}>Bet</Button>
+		</Link>
 	</Card>);
 }
 

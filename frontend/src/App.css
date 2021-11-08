@@ -24,6 +24,11 @@ h1 {
   flex-wrap: wrap;
   justify-content: center;
 }
+.d-between{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
 .w-100 {
   width: 100%;
 }
@@ -37,17 +42,30 @@ h1 {
   color: white !important;
 }
 
+/**/
 .card {
   padding: 10px;
   border-radius: 10px;
   margin: 10px;
 }
+.card-event {
+  background-color: #1abc9c;
+  color: white;
+}
 .team-card {
   display: flex;
-  width: 150px;
+  flex-direction: column;
+  width: 100px;
 }
-.team-card > img {
-  width: 60%;
+.team-card > div > img {
+  width: 80%;
+}
+.team-card-right {
+  justify-content: end;
+}
+.display-score {
+  display: flex;
+  align-items: center;
 }
 
 /*Wallet zone*/

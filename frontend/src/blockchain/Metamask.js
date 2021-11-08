@@ -1,8 +1,11 @@
-import { Button } from 'antd';
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+
 import { Chain } from './Chain';
 
-export const Metamask = () => {
+import { Button } from 'antd';
+
+const MetamaskComponent = ({ setAcc, setChain }) => {
 	const [account, setAccount] = useState(null);
 	const [chainId, setCurrentChainID] = useState(0)
 	const txHash = async () => {
@@ -27,6 +30,9 @@ export const Metamask = () => {
 		window.ethereum.on('accountsChanged', (accounts) => {
 			// Handle the new accounts, or lack thereof.
 			// "accounts" will always be an array, but it can be empty.
+			console.log("Account changed!")
+			setAccount(accounts[0]);
+			setAcc(accounts[0]);
 		});
 		
 		window.ethereum.on('chainChanged', (chainId) => {
@@ -34,7 +40,8 @@ export const Metamask = () => {
 			// Correctly handling chain changes can be complicated.
 			// We recommend reloading the page unless you have good reason not to.
 			// window.location.reload();
-			setCurrentChainID(chainId)
+			setCurrentChainID(chainId);
+			setChain(chainId);
 		});
 
 		
@@ -42,9 +49,11 @@ export const Metamask = () => {
 			await window.ethereum.enable();
 			const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
 			setAccount(accounts[0]);
+			setAcc(accounts[0]);
+
 			const id = await window.ethereum.request({ method: 'eth_chainId' })
-			// window.location.reload();
-			setCurrentChainID(() => parseInt(id, 16))
+			setCurrentChainID(() => parseInt(id))
+			setChain(id)
 		} catch (err) {
 			if (err.code === 4001) {
 				// EIP-1193 userRejectedRequest error
@@ -60,10 +69,6 @@ export const Metamask = () => {
 				setAccount(err.message)
 			}
 		}
-		// window.ethereum.on('chainChanged', (_chainId) => {
-		//   console.log(_chainId);
-		//   setCurrentChainID(() => parseInt(_chainId, 16))
-		// });
 	}, [])
 	return (
 		<div>
@@ -79,3 +84,20 @@ export const Metamask = () => {
 		</div>
 	);
 }
+const getProps = state => {
+	return {
+	  titleHome : state.titleHome,
+	}
+}
+
+const setProps = dispatch => {
+	return {
+		setAcc: address => {
+			dispatch({type: "SET_ACCOUNT", address: address});
+		},
+		setChain: id => {
+			dispatch({type: "SET_CHAIN", id: id});
+		},
+	}
+};
+export const Metamask = connect(getProps, setProps)(MetamaskComponent);

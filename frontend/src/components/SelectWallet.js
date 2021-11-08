@@ -5,21 +5,35 @@ import metamask_img from '../assets/metamask.png';
 import phantom_img from '../assets/phantom.png';
 
 import { Card } from 'antd';
-export const SelectWallet = () => {
-	return(
-		<div className="frame-selectWallet d-flex">
-			<Card className="m-5">
-				<div className="container-logo-wallet">
-					<img src={metamask_img} />
-				</div>
-				<Metamask />
-			</Card>
-			<Card className="m-5">
-				<div className="container-logo-wallet">
-					<img src={phantom_img} />
-				</div>
-				<Wallet />
-			</Card>
-		</div>
-	);
+import { connect } from 'react-redux';
+
+const SelectWalletC = ({ account }) => {
+	if (!account) {
+		return(
+			<div className="frame-selectWallet d-flex">
+				<Card className="m-5">
+					<div className="container-logo-wallet">
+						<img src={metamask_img} />
+					</div>
+					<Metamask />
+				</Card>
+				<Card className="m-5">
+					<div className="container-logo-wallet">
+						<img src={phantom_img} />
+					</div>
+					<Wallet />
+				</Card>
+			</div>
+		);
+	} else {
+		return(<div></div>)
+	}
 } 
+
+const getProps = state => {
+	return {
+	  account : state.account,
+	}
+}
+
+export const SelectWallet = connect(getProps)(SelectWalletC);

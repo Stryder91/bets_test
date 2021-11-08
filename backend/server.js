@@ -6,22 +6,28 @@ const port = 8000
 
 
 // PGL Major Stockholm 2021 : ID 4866
-
+// Id de la finale
 // First step : get events
 app.get('/events', (req, res) => {
-  HLTV.getEvents().then(resfromApi => {
+  HLTV.getEvents({ eventType: "Major" }).then(resfromApi => {
     console.log("Coucou")
     res.send(resfromApi)
   })
+  // HLTV.getPastEvents({ startDate: '2020-01-01', endDate: '2022-01-10' }).then(resfromApi => {
+  //   console.log("Coucou")
+  //   res.send(resfromApi)
+  // })
 });
 
 // Second step : get matches from event
 app.get('/matches', (req, res) => {
   console.log("Coucou", req.query.id)
-  HLTV.getResults({ eventIds : [req.query.id]}).then(resfromApi => {
+  HLTV.getResults({ eventIds : [4866]}).then(resfromApi => {
     res.send(resfromApi)
   })
 });
+
+
 
 app.get('/', (req, res) => {
   res.send('Hello World!');

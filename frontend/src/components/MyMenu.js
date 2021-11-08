@@ -7,6 +7,7 @@ import {
   SettingOutlined,
   LinkOutlined,
 } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
 
 const { SubMenu } = Menu;
 
@@ -26,11 +27,13 @@ export const Sider = () => {
         {/* <Menu.Item key="1" icon={<MailOutlined />}>
           Navigation One
         </Menu.Item> */}
-        <Menu.Item key="2" icon={<CalendarOutlined />}>
+        <Menu.Item key="1" icon={<CalendarOutlined />}>
           Esport
         </Menu.Item>
         <SubMenu key="sub1" icon={<AppstoreOutlined />} title="Counter Strike">
-          <Menu.Item key="3">Events</Menu.Item>
+          <Link to="/events">
+            <Menu.Item key="3">Events</Menu.Item>
+          </Link>
           <Menu.Item key="4">Results</Menu.Item>
         </SubMenu>
         <Menu.Item key="2" icon={<CalendarOutlined />}>

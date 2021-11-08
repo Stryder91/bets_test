@@ -15,17 +15,14 @@ export const Tournament = ({eventState}) => {
 			// handle error
 			console.log(error);
 		})
-		.then(function () {
-			// always executed
-		});
 	}, [])
 	return (
 		<div>
 			<h1>Welcome to Tournament n° {eventState.id}</h1>
-			<div>
+			<div className="d-center"> 
 				{
-				(matches && matches.length > 0) ?
-					matches.map(m => <MatchCard key={m.id} match={m} />)
+				(matches && matches.length > 0) 
+					? matches.map(m => <MatchCard key={m.id} match={m} />)
 					: <div>Loading matches</div>
 				}
 			</div>
@@ -41,18 +38,22 @@ const MatchCard = ({match}) => {
 		matchTitle = "Error defining teams"
 	}
 	return (
-		<Card className="card" title={matchTitle} style={{ width: 500 }}>
-			<div className="d-center">
-				<div className="team-card">
-					<img src={match.team1.logo} alt="coucou"/>
+		<Card className="card p-1" title={matchTitle} style={{ width: 500 }}>
+			<div className="d-between">
+				<div className="team-card team-card-left">
+					<div>
+						<img src={match.team1.logo} alt="coucou"/>
+					</div>
+					<div>{match.team1.name} </div> 
 				</div>
-				<div>
-					<p>{match.team1.name} </p> 
+				<div className="display-score">
 					{match.result.team1} - {match.result.team2}
-					<p>{match.team2.name} </p>
 				</div>
-				<div className="team-card"> 	
-					<img src={match.team2.logo} alt="coucou"/>
+				<div className="team-card team-card-right"> 	
+					<div>
+						<img src={match.team2.logo} alt="coucou"/>
+					</div>
+					<div>{match.team2.name} </div>
 				</div>
 			</div>
 		</Card>
