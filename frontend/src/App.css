@@ -1,8 +1,14 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("../src/assets/font/Montserrat-Medium.ttf");
+ }
+
 .App {
   text-align: center;
   background-color: #30336b;
   color: white !important;
   min-height: 100vh;
+  font-family: 'Montserrat';
 }
 img {
   width: 100%;
@@ -35,14 +41,27 @@ h1 {
 .m-auto {
   margin: auto;
 }
+.m-1 {
+  margin: 5px;
+}
 .m-5 {
   margin: 25px;
+}
+.mt-5 {
+  margin-top: 25px;
 }
 .central {
   color: white !important;
 }
+.green-btn {
+  background-color: #27ae60;
+  color: white;
+}
 
-/**/
+/*Header*/
+.ant-page-header-heading-title {
+  color: white;
+}
 .card {
   padding: 10px;
   border-radius: 10px;

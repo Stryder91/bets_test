@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Card } from 'antd';
+import { connect } from 'react-redux';
 
-export const Tournament = ({eventState}) => {
+export const TournamentC = ({ eventState, eventId}) => {
 
 	const [matches, setMatches] = useState([]);
+	
 	useEffect(() => {
-		axios.get(`/matches?id=${eventState.id}`)
+		const queryParams = new URLSearchParams(window.location.search);
+		const id = queryParams.get('id');
+
+		console.log("THIS PROPS", id)
+		axios.get(`/results?id=${eventId}`)
 		.then(function (res) {
 			console.log("From matches", res.data)
 			setMatches(res.data)
@@ -15,10 +21,12 @@ export const Tournament = ({eventState}) => {
 			// handle error
 			console.log(error);
 		})
-	}, [])
+	}, []);
+
+
 	return (
 		<div>
-			<h1>Welcome to Tournament n° {eventState.id}</h1>
+			<h1>Welcome to Tournament n° {eventId}</h1>
 			<div className="d-center"> 
 				{
 				(matches && matches.length > 0) 
@@ -59,3 +67,10 @@ const MatchCard = ({match}) => {
 		</Card>
 	)
 }
+const getProps = state => {
+	return {
+	  eventId : state.eventId,
+	}
+}
+
+export const Tournament = connect(getProps, null)(TournamentC);

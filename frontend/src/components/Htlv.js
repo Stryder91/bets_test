@@ -3,11 +3,12 @@ import axios from 'axios';
 import { Card, Button } from 'antd';
 import { Tournament } from './Tournament';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 
-export const Hltv = () => {
+export const HltvC = ({ setEvt }) => {
 	const [events, setEvents] = useState([]);
-	const [eventState, setEvent] = useState(0)
+	const [eventState, setEvent] = useState(0);
 
 	useEffect(() => {
 		axios.get('/events')
@@ -21,18 +22,16 @@ export const Hltv = () => {
 		})
 	}, [])
 
-	if (eventState && eventState.id > 0) {
-		console.log("tournament, id", eventState.id)
-		return(
-			<Tournament eventState={eventState}/>
-		)
+	const _setEvent = event => {
+		setEvent(event);
+		setEvt(event.id);
 	}
 	if (events && events.length > 0) {
 		return (
 			<div>
 				<div>All events</div>
 				<div className="d-center">
-					{events.map(e => <MyCard key={e.id} setEvent={setEvent} event={e}/>)}
+					{events.map(e => <MyCard key={e.id} setEvent={_setEvent} event={e}/>)}
 				</div>
 			</div>
 		)
@@ -41,15 +40,32 @@ export const Hltv = () => {
 }
 
 const MyCard = ({event, setEvent}) => {
-	console.log("Event", event.id)
 	return (
 	<Card className="card card-event" title={event.name} style={{ width: 300 }}>
 		<p>Start : {event.dateStart}</p>
 		<p>End : {event.dateEnd}</p>
 		<p>Id : {event.id}</p>
 		<Link to={`${event.id}`}>
-			<Button onClick={() => setEvent(event)}>Bet</Button>
+			<Button className="m-1" onClick={() => setEvent(event)}>Results</Button>	
+		</Link>
+		<Link to={`incoming`}>
+			<Button className="m-1" onClick={() => setEvent(event)}>Bet</Button>	
 		</Link>
 	</Card>);
 }
+
+const getProps = state => {
+	return {
+	  titleHome : state.titleHome,
+	}
+}
+
+const setProps = dispatch => {
+	return {
+		setEvt: id => {
+			dispatch({type: "SET_EVENT", id: id});
+		},
+	}
+};
+export const Hltv = connect(getProps, setProps)(HltvC);
 

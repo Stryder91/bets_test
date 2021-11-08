@@ -7,9 +7,8 @@ import { Button, PageHeader } from 'antd';
 const HeaderComponent = ({ chainId, account }) => {
   return <PageHeader
     className="site-page-header"
-    onBack={() => null}
     title="Best Bets"
-    subTitle="Csgo Bets"
+    // subTitle="Csgo Bets"
     extra={[
       <Button key="1">Address: {account}</Button>,
       <Button key="2">Network: {chainId}</Button>,

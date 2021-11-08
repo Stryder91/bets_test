@@ -1,7 +1,8 @@
 import React from 'react';
 import { Menu, Switch, Divider } from 'antd';
 import {
-  MailOutlined,
+  CustomerServiceOutlined,
+  CrownOutlined,
   CalendarOutlined,
   AppstoreOutlined,
   SettingOutlined,
@@ -27,14 +28,19 @@ export const Sider = () => {
         {/* <Menu.Item key="1" icon={<MailOutlined />}>
           Navigation One
         </Menu.Item> */}
-        <Menu.Item key="1" icon={<CalendarOutlined />}>
+        <Menu.Item key="0" icon={<CustomerServiceOutlined />}>
           Esport
         </Menu.Item>
-        <SubMenu key="sub1" icon={<AppstoreOutlined />} title="Counter Strike">
+        <SubMenu key="sub1" icon={<CrownOutlined />} title="Counter Strike">
           <Link to="/events">
-            <Menu.Item key="3">Events</Menu.Item>
+            <Menu.Item key="1">Events</Menu.Item>
           </Link>
-          <Menu.Item key="4">Results</Menu.Item>
+          <Link to="/bets">
+          </Link>
+          <Menu.Item key="adfe">My Bets</Menu.Item>
+          <Link to="/matches">
+            <Menu.Item key="3">Games</Menu.Item>
+          </Link>
         </SubMenu>
         <Menu.Item key="2" icon={<CalendarOutlined />}>
           Sport
