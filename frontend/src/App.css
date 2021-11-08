@@ -1,16 +1,17 @@
 .App {
   text-align: center;
-}
-
-.App-header {
-  background-color: #282c34;
+  background-color: #30336b;
+  color: white !important;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+}
+img {
+  width: 100%;
+  height: auto;
+}
+h1 {
   color: white;
 }
+
 .d-flex {
   display: flex;
 }
@@ -23,21 +24,20 @@
   flex-wrap: wrap;
   justify-content: center;
 }
-img {
+.w-100 {
   width: 100%;
-  height: auto;
 }
 .m-auto {
   margin: auto;
 }
-
-.App-link {
-  color: #61dafb;
+.m-5 {
+  margin: 25px;
+}
+.central {
+  color: white !important;
 }
 
 .card {
-  background-color: #fff;
-  color: #282c34;
   padding: 10px;
   border-radius: 10px;
   margin: 10px;
@@ -48,4 +48,10 @@ img {
 }
 .team-card > img {
   width: 60%;
+}
+
+/*Wallet zone*/
+.container-logo-wallet {
+  width: 100px;
+  margin: auto;
 }
