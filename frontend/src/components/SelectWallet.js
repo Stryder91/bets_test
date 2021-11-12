@@ -26,7 +26,7 @@ const SelectWalletC = ({ account }) => {
 			</div>
 		);
 	} else {
-		return(<div></div>)
+		return(<div>Please connect to a wallet</div>)
 	}
 } 
 
