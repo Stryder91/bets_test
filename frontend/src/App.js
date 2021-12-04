@@ -10,11 +10,11 @@ import { Sider } from './components/MyMenu';
 import { SelectWallet } from "./components/SelectWallet";
 import { Tournament } from "./components/Tournament";
 import { Matches } from "./components/Matches";
+import Box from "./blockchain/Box";
 
 function App() {
   return (
     <div className="App">
-      
       <BrowserRouter>
       <Header />
       <main className="d-flex">
@@ -23,13 +23,11 @@ function App() {
           <h1 className="w-100">Welcome on Best Bets</h1>
           <SelectWallet />
           <Routes>
-            <Route path="/matches" element={<Matches />} /> 
+            <Route path="/matches" element={<Box />} /> 
             <Route path="/events/:id" element={<Tournament />} /> 
             <Route path="/events" element={<Hltv />} /> 
           </Routes>
         </div>
-
-        {/* <FormTest /> */}
       </main>
       </BrowserRouter>  
     </div>
